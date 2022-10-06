@@ -1,0 +1,57 @@
+<p>home</p>
+<div class="wrapper">
+    <p>
+        <select name="miselectComercio" [(ngModel)]="comercioSeleccionado">
+            <option value="undefined">Comercio...</option>
+            <option [value]="item.id" *ngFor="let item of comercios">{{item.nomComercio}}</option>
+        </select>
+    </p>
+
+    <p>
+        <select name="miselectServicio" [(ngModel)]="servicioSeleccionado">
+            <option value="undefined">Servicio...</option>
+            <option [value]="item.id" *ngFor="let item of servicios">{{item.nomServico}}</option>
+        </select>
+    </p>
+
+</div>
+
+<div class="wrapper">
+    <p>
+        <input type="text" onfocus="(this.type = 'date')" [(ngModel)]="fechaFin">
+
+
+    </p>
+
+    <p>
+        <input type="text" onfocus="(this.type = 'date')" [(ngModel)]="fechaInicio">
+
+
+    </p>
+    <button type="button"> Generar</button>
+</div>
+<hr>
+<hr>
+<hr>
+<table class="table table-bordered table-striped" id="customers">
+    <thead>
+        <tr>
+            <th>Comercio</th>
+            <th>Servicio</th>
+            <th>Fecha Turno</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let turno of turnos">
+            <td>{{turno.servicio.comercio.nomComercio}}</td>
+            <td>{{turno.servicio.nomServico}}</td>
+            <td>{{turno.fechaTurno | date: 'dd/MM/yyyy'}}</td>
+            <td>{{turno.horaInicio | date: 'h:mm a' | lowercase }}</td>
+            <td>{{turno.horaFin | date: 'h:mm a' | lowercase }}</td>
+        </tr>
+
+
+    </tbody>
+</table>
